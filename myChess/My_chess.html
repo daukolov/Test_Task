@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=windows-1251"/>
+
+        <title> My Chess </title>
+        <link rel="stylesheet" type="text/css" href="css/chess.css">
+
+        <script type="text/javascript" src="src/jquery.js"></script>
+        <script type="text/javascript" src="src/ChessBoard.js"></script>
+        <script type="text/javascript">                                                                             
+        $(document).ready(function()
+        {    
+            ChessBoardInit(document.getElementById('ChessBoard'), document.getElementById('ModalConversionPawns'), document.getElementById('SelectNewChessMan'), window.innerWidth);
+            InfoTextInit(document.getElementById('InfoText'));
+            ArrangeFigures();
+        });
+    
+        function doResizeMySite()
+        {
+            ChessBoardInit(document.getElementById('ChessBoard'), document.getElementById('ModalConversionPawns'),document.getElementById('SelectNewChessMan'), window.innerWidth);
+            RefreshPosition();
+        }
+    
+        var resizeTimer='first';
+        function ResizeMySite()
+        {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(doResizeMySite, 100);
+            //doResizeMySite();
+        }
+      
+        </script>
+    </head>
+  
+    <body onresize = "ResizeMySite()">
+        <form id="form" action="#" method="POST">
+            <p id = "TitleText"  align = "center" class = "TitleStyle">  
+            </p>
+            <h1 id="InfoText" align="center">
+                Ход белых!
+            </h1>
+            <canvas id="ChessBoard" width="140" height="140" class="ChessBoardStyle"></canvas>
+            <div id="ModalConversionPawns" class="lock">
+                <div class="shim">
+                    <div class="modal">
+                        <h2 class="textModal">Превращение пешки.</h2>
+                        <canvas id="SelectNewChessMan" width="140" height="140" class="ChessBoardStyle"></canvas>
+                    </div>
+                </div>
+            </div>
+        </form>   
+    </body>
+</html>
